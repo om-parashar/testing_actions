@@ -2,7 +2,7 @@ plugins {
   id(Plugins.kotlinKapt)
 }
 dependencies {
-  implementation(project(Modules.KPTR.domain))
+  implementation(project(Modules.CALLDICTATOR.domain))
   implementation(Libs.KotlinUtils.openTracing)
   implementation(Libs.KotlinUtils.exposed)
 

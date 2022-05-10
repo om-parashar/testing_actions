@@ -1,4 +1,4 @@
-rootProject.name = "kptr"
+rootProject.name = "calldictator"
 
 include(":domain")
 project(":domain").projectDir = File("products/product1/domain")

@@ -1,4 +1,4 @@
 dependencies {
-  implementation(project(Modules.KPTR.domain))
-  implementation(project(Modules.KPTR.Api.models))
+  implementation(project(Modules.CALLDICTATOR.domain))
+  implementation(project(Modules.CALLDICTATOR.Api.models))
 }

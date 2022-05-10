@@ -25,7 +25,7 @@ allprojects {
 }
 
 subprojects {
-  group = "in.porter.kptr"
+  group = "in.porter.calldictator"
   version = "0.1.0"
 
   apply(plugin = Plugins.kotlinJvm)
