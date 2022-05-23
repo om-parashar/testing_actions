@@ -17,6 +17,11 @@ object Modules {
     }
   }
 
+  object Providers {
+    const val rheoConnect = ":rheo-connection"
+    const val omsConnect = ":oms-connection"
+  }
+
 
   object Servers {
     const val commons = ":server-commons"
