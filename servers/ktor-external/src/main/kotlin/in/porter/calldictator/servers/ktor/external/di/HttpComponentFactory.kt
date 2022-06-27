@@ -8,6 +8,7 @@ object HttpComponentFactory {
     DaggerHttpComponent.builder()
       .rootComponent(ComponentsFactory.rootComponent)
       .psqlDataComponent(ComponentsFactory.psqlDataComponent)
+      .oMSClientComponent(ComponentsFactory.omsClientComponent)
       .build()
 
 }

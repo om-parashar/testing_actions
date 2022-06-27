@@ -33,4 +33,7 @@ project(":oms-connection").projectDir = File("products/providers/oms-connection"
 include(":rheo-connection")
 project(":rheo-connection").projectDir = File("products/providers/rheo-connection")
 
+include(":utils")
+project(":utils").projectDir = File("products/providers/utils")
+
 //includeBuild("../kotlin-utils")

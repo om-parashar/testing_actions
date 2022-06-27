@@ -85,6 +85,6 @@ fun Application.main() {
 
   routing {
     get("/") { call.respond(HttpStatusCode.OK, Unit) }
-    route("/call") { callDictatorRoutes(httpComponent) }
+    route("/api/v1/call") { callDictatorRoutes(httpComponent) }
   }
 }

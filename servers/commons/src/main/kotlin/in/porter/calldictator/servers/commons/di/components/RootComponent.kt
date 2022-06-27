@@ -6,6 +6,7 @@ import `in`.porter.calldictator.servers.commons.di.modules.MicrometerModule
 import `in`.porter.calldictator.servers.commons.di.modules.PsqlModule
 import `in`.porter.calldictator.servers.commons.di.modules.SQSClientModule
 import `in`.porter.calldictator.servers.commons.di.modules.UtilsModule
+import `in`.porter.kotlinutils.serde.commons.SerdeMapper
 import com.zaxxer.hikari.HikariDataSource
 import dagger.Component
 import io.ktor.client.*
@@ -29,4 +30,5 @@ interface RootComponent {
   val sqsClient: SQSClient
   val httpClient: HttpClient
   val environment: Environment
+  val serdeMapper: SerdeMapper
 }

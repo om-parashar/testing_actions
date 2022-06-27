@@ -14,6 +14,9 @@ dependencies {
   implementation(project(Modules.CALLDICTATOR.Data.psql))
   implementation(project(Modules.CALLDICTATOR.Api.service))
   implementation(project(Modules.CALLDICTATOR.Api.models))
+  implementation(project(Modules.Providers.omsConnect))
+  implementation(project(Modules.Providers.rheoConnect))
+  implementation(project(Modules.Providers.utils))
   implementation(project(Modules.Servers.commons))
   implementation(project(Modules.Servers.client))
 

@@ -20,6 +20,7 @@ object Modules {
   object Providers {
     const val rheoConnect = ":rheo-connection"
     const val omsConnect = ":oms-connection"
+    const val utils = ":utils"
   }
 
 
@@ -27,6 +28,5 @@ object Modules {
     const val commons = ":server-commons"
     const val client = ":client"
   }
-
 
 }

@@ -7,11 +7,11 @@ data class RheoInput
 @JsonCreator
 constructor(
   @JsonProperty("feature_name")
-  val feature_name: String,
+  val featureName: String,
 
   @JsonProperty("user_id")
-  val user_id: String,
+  val userId: String,
 
   @JsonProperty("context_attrs")
-  val context_attrs: List<ContextAttribute>
+  val contextAttrs: List<RheoContextAttribute>
 )
