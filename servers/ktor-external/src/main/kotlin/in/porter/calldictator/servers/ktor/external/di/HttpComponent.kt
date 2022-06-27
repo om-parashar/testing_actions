@@ -8,13 +8,15 @@ import `in`.porter.calldictator.servers.ktor.di.HttpScope
 import `in`.porter.calldictator.servers.ktor.external.callDictator.usecase.GetCallDictationHttpService
 
 import dagger.Component
+import rheoconnect.di.RheoClientComponent
 
 @HttpScope
 @Component(
   dependencies = [
     RootComponent::class,
     PsqlDataComponent::class,
-    OMSClientComponent::class
+    OMSClientComponent::class,
+    RheoClientComponent::class
   ]
 )
 interface HttpComponent {

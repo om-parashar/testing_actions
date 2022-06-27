@@ -21,6 +21,7 @@ interface RheoClientComponent {
 
     fun build(): RheoClientComponent
 
+    @BindsInstance
     fun httpClient(client: HttpClient): Builder
 
     @BindsInstance
