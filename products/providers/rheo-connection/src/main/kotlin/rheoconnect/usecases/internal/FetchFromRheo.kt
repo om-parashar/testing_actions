@@ -2,12 +2,13 @@ package rheoconnect.usecases.internal
 
 import `in`.porter.kotlinutils.instrumentation.opentracing.logger
 import `in`.porter.kotlinutils.serde.commons.SerdeMapper
+import `in`.porter.kotlinutils.serde.jackson.json.toJsonString
+import com.fasterxml.jackson.databind.util.JSONPObject
 import io.ktor.client.*
+import io.ktor.client.features.*
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
-import rheoconnect.entities.RheoConnectionConstants
-import rheoconnect.entities.RheoInput
-import rheoconnect.entities.RheoResponse
+import rheoconnect.entities.*
 import javax.inject.Inject
 
 class FetchFromRheo
@@ -18,10 +19,8 @@ constructor(
 ){
   suspend fun fetchFeature(input: RheoInput): RheoResponse {
     val url = fetchURL(RheoConnectionConstants.FEATURE_TOGGLING, mapOf())
-    return input
-      .let { performPostRequest(url = url, payload = input) }
-      .let { logResponse(it) }
-      .let { processResponse(it) }
+    val response = performPostRequest(url = url, payload = input)
+    return processResponse(response)
   }
 
   private fun fetchURL(urlString: String, requestParams: Map<String, Any>): String {
@@ -37,14 +36,18 @@ constructor(
   private suspend fun performPostRequest(
     url: String,
     payload: Any
-  ): HttpResponse {
+  ): String {
 
     val res =  httpClient.post<HttpResponse> {
       url(url)
       header("content-Type", "application/json")
       body = payload
+      timeout { requestTimeoutMillis = 30*15000 }
     }
-    return res
+    val responseStr = res.readText()
+    logger.info("response status: ${res.status}")
+    logger.info("response value: $responseStr")
+    return responseStr
   }
 
   private suspend fun logResponse(response: HttpResponse): String {
@@ -58,7 +61,7 @@ constructor(
     if(response.isBlank()) {
       return RheoResponse(
         flagStatus = false,
-        msg = null,
+        msg = RheoMessage.UNKNOWN_ERROR,
         context = null
       )
     }

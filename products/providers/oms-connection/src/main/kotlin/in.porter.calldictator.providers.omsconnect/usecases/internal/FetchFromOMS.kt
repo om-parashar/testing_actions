@@ -4,8 +4,10 @@ import `in`.porter.calldictator.providers.omsconnect.entities.*
 import `in`.porter.kotlinutils.instrumentation.opentracing.logger
 import `in`.porter.kotlinutils.serde.commons.SerdeMapper
 import io.ktor.client.*
+import io.ktor.client.features.*
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
+import io.ktor.http.*
 import javax.inject.Inject
 
 class FetchFromOMS
@@ -16,38 +18,49 @@ constructor(
 ) {
 
   suspend fun processDriverRequest(phone: String): DriverResponse? {
-    return mapOf("phone" to phone)
-      .let { fetchURL(OMSConnectionConstants.FETCH_DRIVER_API, it) }
-      .let { performGetRequest(it) }
-      .let { logResponse(it) }
-      .let { processDriverResponse(it) }
+    val url = fetchURL(OMSConnectionConstants.FETCH_DRIVER_API, mapOf("phone" to phone))
+    val response = performGetRequest(url = url)
+    return processDriverResponse(response)
   }
 
 
   suspend fun processCustomerRequest(phone: String): CustomerResponse? {
-    return mapOf("phone" to phone)
+
+    val url = fetchURL(OMSConnectionConstants.FETCH_CUSTOMER_API, mapOf("phone" to phone))
+    val response = performGetRequest(url = url)
+    return processCustomerResponse(response)
+
+    /*return mapOf("phone" to phone)
       .let { fetchURL(OMSConnectionConstants.FETCH_CUSTOMER_API, it) }
       .let { performGetRequest(it) }
       .let { logResponse(it) }
-      .let { processCustomerResponse(it) }
+      .let { processCustomerResponse(it) }*/
   }
 
 
   suspend fun processOrderRequest(caller_id: Int, caller_type: String): OrderResponse? {
-    return mapOf("caller_id" to caller_id, "caller_type" to caller_type)
+    val url = fetchURL(OMSConnectionConstants.FETCH_ORDER_API, mapOf("caller_id" to caller_id, "caller_type" to caller_type))
+    val response = performGetRequest(url = url)
+    return processOrderResponse(response)
+
+    /*return mapOf("caller_id" to caller_id, "caller_type" to caller_type)
       .let { fetchURL(OMSConnectionConstants.FETCH_ORDER_API, it) }
       .let { performGetRequest(it) }
       .let { logResponse(it) }
-      .let { processOrderResponse(it) }
+      .let { processOrderResponse(it) }*/
   }
 
 
   suspend fun processCityRequest(did: String): CityResponse? {
-    return mapOf("did" to did)
+    val url = fetchURL(OMSConnectionConstants.FETCH_CITY_API, mapOf("did" to did))
+    val response = performGetRequest(url = url)
+    return processCityResponse(response)
+
+    /*return mapOf("did" to did)
       .let { fetchURL(OMSConnectionConstants.FETCH_CITY_API, it) }
       .let { performGetRequest(it) }
       .let { logResponse(it) }
-      .let { processCityResponse(it) }
+      .let { processCityResponse(it) }*/
 
   }
 
@@ -64,22 +77,23 @@ constructor(
 
   private suspend fun performGetRequest(
     url: String
-  ): HttpResponse {
+  ): String {
 
     val res =  httpClient.get<HttpResponse> {
       url(url)
       header("content-Type", "application/json")
+      timeout { requestTimeoutMillis = 30*15000 }
     }
-    return res
+    return if(res.status.isSuccess()) {
+      val responseStr = res.readText()
+      logger.info("success response: $responseStr")
+      responseStr
+    } else {
+      logger.info("error response: ")
+      ""
+    }
   }
-
-  private suspend fun logResponse(response: HttpResponse): String {
-    val responseStr = response.readText()
-    logger.info("response status: ${response.status}")
-    logger.info("response value: $responseStr")
-    return responseStr
-  }
-
+  
   private fun processDriverResponse(response: String): DriverResponse? {
     // return response.isNotBlank().let { mapper.fromString(response, DriverResponse::class.java) }
     if(response.isBlank()) {

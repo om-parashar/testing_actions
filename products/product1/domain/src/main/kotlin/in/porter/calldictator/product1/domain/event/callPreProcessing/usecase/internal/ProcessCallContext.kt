@@ -38,22 +38,19 @@ constructor(
   }
 
   private suspend fun getUserCallContextFromDriver(callerContext: CallerContext, driverCallContext: DriverCallContext): UserCallContext{
-    return CallerOrderContext(caller_type = Constants.USER_TYPE_DRIVER, caller_id = driverCallContext.id)
-      .let { callContextProviderClient.fetchOrderContext(it) }
-      .let { callContextMapper.mapDriverContextToUserContext(callerContext, driverCallContext, it) }
+    val callOrderContext = CallerOrderContext(caller_type = Constants.USER_TYPE_DRIVER, caller_id = driverCallContext.id)
+    val orderContext = callContextProviderClient.fetchOrderContext(callOrderContext)
+    return callContextMapper.mapDriverContextToUserContext(callerContext, driverCallContext, orderContext)
   }
 
   private suspend fun getUserCallContextFromCustomer(callerContext: CallerContext, customerCallContext: CustomerCallContext): UserCallContext {
-    return CallerOrderContext(caller_type = Constants.USER_TYPE_CUSTOMER, caller_id = customerCallContext.id)
-      .let { callContextProviderClient.fetchOrderContext(it) }
-      .let { callContextMapper.mapCustomerContextToUserContext(callerContext, customerCallContext, it) }
+    val city = callContextProviderClient.fetchCityContext(callerContext.did)
+    val callOrderContext = CallerOrderContext(caller_type = Constants.USER_TYPE_CUSTOMER, caller_id = customerCallContext.id)
+    val orderContext = callContextProviderClient.fetchOrderContext(callOrderContext)
+    return callContextMapper.mapCustomerContextToUserContext(callerContext, city?.language ?: Constants.DEFAULT_LANGUAGE, customerCallContext, orderContext)
   }
 
   private fun getUserCallContextForUnknownCaller(callerContext: CallerContext, city: CityCallContext?): UserCallContext {
-    var name = ""
-    if(city != null) {
-      name = city.name
-    }
-    return callContextMapper.mapUnknownContextToUserContext(callerContext, name, "")
+    return callContextMapper.mapUnknownContextToUserContext(callerContext, city?.name ?: Constants.DEFAULT_CITY, city?.language ?: Constants.DEFAULT_LANGUAGE)
   }
 }

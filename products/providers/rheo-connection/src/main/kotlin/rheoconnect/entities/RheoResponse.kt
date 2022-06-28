@@ -5,11 +5,11 @@ import com.fasterxml.jackson.annotation.JsonProperty
 data class RheoResponse(
 
   @JsonProperty("flag_status")
-  private val flagStatus: Boolean,
+  val flagStatus: Boolean,
 
   @JsonProperty("msg")
-  private val msg: RheoMessage?,
+  val msg: RheoMessage,
 
   @JsonProperty("context")
-  private val context: String?
+  val context: String?
 )

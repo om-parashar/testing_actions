@@ -27,21 +27,23 @@ constructor(
       val did = params.getOrFail<String>("did")
       val phone = params.getOrFail<String>("phone")
       val vertical = params.getOrFail<String>("vertical")
+      val customerCRTId = params.getOrFail("customerCRTId")
 
       val callDictateRequest = CallDictateRequest(
         did = did,
         phone = phone,
-        vertical = vertical
+        vertical = vertical,
+        customerCRTId = customerCRTId
       )
 
       val response = callDictationApiService.invoke(callDictateRequest)
-      if (response.responseCode == 1004) {
+      if (response.responseCode != 1000) {
         call.respond(HttpStatusCode.BadRequest)
       }
       call.respond(HttpStatusCode.OK, response)
     } catch (e: Exception) {
       logger.error("error encountered while processing the request. $e")
-      call.respond(HttpStatusCode.UnprocessableEntity, e)
+      call.respond(HttpStatusCode.UnprocessableEntity)
     }
   }
 }

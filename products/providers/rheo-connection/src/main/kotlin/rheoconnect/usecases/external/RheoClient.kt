@@ -18,9 +18,12 @@ constructor(
 ): FeatureContextProviderClient, Traceable {
 
   override suspend fun fetchFeatureContext(request: RheoRequestContext): RheoResponseContext{
-    return request
+    val rheoInput = generateRheoInput.execute(request)
+    val feature = fetchFromRheo.fetchFeature(rheoInput)
+    return mapRheoResponse.invoke(feature)
+    /*return request
       .let { generateRheoInput.execute(it) }
       .let { fetchFromRheo.fetchFeature(it) }
-      .let { mapRheoResponse.invoke(it) }
+      .let { mapRheoResponse.invoke(it) }*/
   }
 }

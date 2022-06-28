@@ -18,11 +18,10 @@ constructor(
   suspend fun invoke(request: CallDictateRequest): CallDictationResponse {
 
     if (!validateApiRequest.invoke(request)) {
-      CallDictationResponse.ErrorResponse(responseCode = 1004, responseMsg = "request context not proper.")
+      CallDictationResponse.ErrorResponse(responseCode = 2000, responseMsg = "request context not proper.")
     }
-    return request
-      .let { callDictationMapper.mapPreprocessingRequest(it) }
-      .let { callDictationService.invoke(it) }
-      .let { callDictationMapper.mapPreprocessingResponse("temp") }
+    val callerContext = callDictationMapper.mapPreprocessingRequest(request)
+    val callerResponse = callDictationService.invoke(callerContext)
+    return callDictationMapper.mapPreprocessingResponse(callerResponse)
   }
 }

@@ -4,4 +4,7 @@ object Constants {
   const val VOICEBOT_FLAG = "calls-voicebot"
   const val IVR_FLAG = "calls-ivr"
   const val INBOUND_FLAG = "calls-inbound"
+
+  const val INBOUND = "inbound"
+  const val OUTBOUND = "outbound"
 }

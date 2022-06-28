@@ -26,15 +26,14 @@ constructor() {
   fun toCustomerCallContext(response: CustomerResponseContext) = CustomerCallContext (
     id = response.id,
     uuid = response.uuid,
-    city = response.city,
+    city = response.city.name,
     language = response.language,
-    subCategory = response.subCategory
+    subCategory = if (response.subCategory.isNotEmpty()) response.subCategory["value"].toString() else ""
     )
 
   fun toOrderCallContext(response: OrderResponseContext) = OrderContext (
     id = response.id,
     alternateNumber = response.alternateNumber,
-    cancellationReason = response.cancellationInfo.cancelReason,
     customerId = response.customerInfo.id,
     isBusinessOrder = response.isBusinessOrder,
     isHelperOrder = response.isHelperOrder,
@@ -45,10 +44,14 @@ constructor() {
     labourHelper = response.labourHelper,
     outstation = response.outstation,
     requestedVehicleName = response.vehicleInfo.typeRequested,
-    status = response.status
+    status = response.status,
+    cancellationReason = response.cancellationInfo.cancelReason,
+    cancellationReasonSource = response.cancellationInfo.cancelReasonSource,
+    cancellationReasonAttribution = response.cancellationInfo.attribution
     )
 
   fun toCityCallContext(response: CityResponseContext) = CityCallContext (
-    name = response.city
+    name = response.name,
+    language = response.language
     )
 }

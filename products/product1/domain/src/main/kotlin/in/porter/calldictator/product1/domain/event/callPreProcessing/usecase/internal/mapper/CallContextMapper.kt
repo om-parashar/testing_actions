@@ -22,14 +22,14 @@ constructor(){
     order = orderContext
     )
 
-  fun mapCustomerContextToUserContext(callerContext: CallerContext, customerCallContext: CustomerCallContext, orderContext: OrderContext?) = UserCallContext (
+  fun mapCustomerContextToUserContext(callerContext: CallerContext, language: String, customerCallContext: CustomerCallContext, orderContext: OrderContext?) = UserCallContext (
     userType = Constants.USER_TYPE_CUSTOMER,
     did = callerContext.did,
     mobile = callerContext.phone,
     city = customerCallContext.city,
     id = customerCallContext.id,
     uuid = customerCallContext.uuid,
-    language = customerCallContext.language,
+    language = language,
     loginStatus = null,
     vehicleInfo = null,
     isSuspended = null,

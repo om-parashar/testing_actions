@@ -11,6 +11,7 @@ import dagger.Module
 import dagger.Provides
 import io.ktor.client.*
 import io.ktor.client.engine.cio.*
+import io.ktor.client.features.*
 import io.ktor.client.features.json.*
 import io.ktor.util.*
 import org.apache.logging.log4j.kotlin.Logging
@@ -25,6 +26,7 @@ class UtilsModule {
   @KtorExperimentalAPI
   @Provides
   fun provideHttpClient() = HttpClient(CIO) {
+    install(HttpTimeout)
     install(JsonFeature) {
       serializer = JacksonSerializer {
         propertyNamingStrategy = PropertyNamingStrategy.SNAKE_CASE
