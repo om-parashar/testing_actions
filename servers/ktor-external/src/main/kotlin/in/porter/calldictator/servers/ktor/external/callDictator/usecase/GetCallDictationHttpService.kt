@@ -37,7 +37,7 @@ constructor(
       )
 
       val response = callDictationApiService.invoke(callDictateRequest)
-      if (response.responseCode != 1000) {
+      if (response.responseCode != 2000) {
         call.respond(HttpStatusCode.BadRequest)
       }
       call.respond(HttpStatusCode.OK, response)
