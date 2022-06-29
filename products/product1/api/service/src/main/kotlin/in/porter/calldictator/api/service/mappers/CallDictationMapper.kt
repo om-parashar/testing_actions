@@ -20,7 +20,7 @@ constructor() {
 
   fun mapPreprocessingResponse(callerResponse: CallerResponse): CallDictationResponse {
 
-    if(callerResponse == null) return CallDictationResponse.ErrorResponse(responseCode = 2000, responseMsg = "error happened while parsing.")
+    if(callerResponse == null) return CallDictationResponse.ErrorResponse(responseCode = 4000, responseMsg = "error happened while parsing.")
 
     val featureContext = callerResponse.callerResponseOutputContext
     if (featureContext != null) {
@@ -39,16 +39,17 @@ constructor() {
       }
 
       return CallDictationResponse.SuccessResponse(
-        responseCode = 1000,
+        responseCode = 2000,
         responseMsg = "success",
         type = type,
         value = value,
         config = CallDictationResponseConfig(
           language = callerResponse.callContext.language,
-          skill = skill
+          skill = skill,
+          channel = featureContext.channel
         )
       )
     }
-    return CallDictationResponse.ErrorResponse(responseCode = 2000, responseMsg = "content parsed, no content found")
+    return CallDictationResponse.ErrorResponse(responseCode = 4000, responseMsg = "content parsed, no content found")
   }
 }

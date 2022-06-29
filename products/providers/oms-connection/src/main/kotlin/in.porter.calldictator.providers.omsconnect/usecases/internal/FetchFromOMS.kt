@@ -25,7 +25,6 @@ constructor(
 
 
   suspend fun processCustomerRequest(phone: String): CustomerResponse? {
-
     val url = fetchURL(OMSConnectionConstants.FETCH_CUSTOMER_API, mapOf("phone" to phone))
     val response = performGetRequest(url = url)
     return processCustomerResponse(response)

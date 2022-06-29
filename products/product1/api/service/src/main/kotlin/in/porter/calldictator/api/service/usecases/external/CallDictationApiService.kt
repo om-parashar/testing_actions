@@ -18,7 +18,7 @@ constructor(
   suspend fun invoke(request: CallDictateRequest): CallDictationResponse {
 
     if (!validateApiRequest.invoke(request)) {
-      CallDictationResponse.ErrorResponse(responseCode = 2000, responseMsg = "request context not proper.")
+      CallDictationResponse.ErrorResponse(responseCode = 4000, responseMsg = "request context not proper.")
     }
     val callerContext = callDictationMapper.mapPreprocessingRequest(request)
     val callerResponse = callDictationService.invoke(callerContext)
