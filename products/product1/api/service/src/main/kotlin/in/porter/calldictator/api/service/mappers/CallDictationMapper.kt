@@ -45,8 +45,7 @@ constructor() {
         value = value,
         config = CallDictationResponseConfig(
           language = callerResponse.callContext.language,
-          skill = skill,
-          channel = featureContext.channel
+          skill = skill
         )
       )
     }
