@@ -45,7 +45,8 @@ constructor() {
         value = value,
         config = CallDictationResponseConfig(
           preferred_language = callerResponse.callContext.language,
-          skill = skill
+          skill = skill,
+          caller_type = callerResponse.callContext.userType
         )
       )
     }
