@@ -28,6 +28,6 @@ constructor(
   private fun processOutput(rheoResponseContext: RheoResponseContext): VoicebotResponseOutputContext? {
     logger.info("voicebot response: $rheoResponseContext")
     return if(!rheoResponseContext.status) null
-    else VoicebotResponseOutputContext(ivr = rheoResponseContext.result["key"], channel = rheoResponseContext.result["channel"])
+    else VoicebotResponseOutputContext(ivr = rheoResponseContext.result["ivr"], channel = rheoResponseContext.result["channel"])
   }
 }

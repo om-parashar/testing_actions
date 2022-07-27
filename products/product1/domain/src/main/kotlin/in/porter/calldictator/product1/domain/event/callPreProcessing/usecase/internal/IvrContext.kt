@@ -25,10 +25,10 @@ constructor(
   }
 
   private fun processOutput(rheoResponseContext: RheoResponseContext): IvrResponseOutputContext? {
-    logger.info("voicebot response: $rheoResponseContext")
+    logger.info("ivr response: $rheoResponseContext")
     return if(!rheoResponseContext.status) null
     else IvrResponseOutputContext(
-      ivr = rheoResponseContext.result["key"],
+      ivr = rheoResponseContext.result["ivr"],
       channel = rheoResponseContext.result["channel"],
       skillName = rheoResponseContext.result["skill"],
       queueName = rheoResponseContext.result["queue"]

@@ -25,7 +25,7 @@ constructor(
   }
 
   private fun processOutput(rheoResponseContext: RheoResponseContext): InboundResponseOutputContext? {
-    logger.info("voicebot response: $rheoResponseContext")
+    logger.info("inbound response: $rheoResponseContext")
     return if(!rheoResponseContext.status) null
     else InboundResponseOutputContext(
       skillName = rheoResponseContext.result["skill"],
