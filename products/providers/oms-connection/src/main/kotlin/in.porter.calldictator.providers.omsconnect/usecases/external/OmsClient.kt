@@ -28,13 +28,13 @@ constructor(
   override suspend fun fetchOrderContext(request: CallerOrderContext): OrderContext? {
     return request
       .let { fetchFromOMS.processOrderRequest(caller_id = it.caller_id, caller_type = it.caller_type) }
-      .let { it?.let { it1 -> omsResponseMapper.toOrderCallContext(it1.response) } }
+      .let { it?.let { it -> omsResponseMapper.toOrderCallContext(it.response) } }
   }
 
   override suspend fun fetchCityContext(did: String): CityCallContext? {
     return did
       .let { fetchFromOMS.processCityRequest(did = it) }
-      .let { it?.let { it1 -> omsResponseMapper.toCityCallContext(it1.response) } }
+      .let { it?.let { it -> omsResponseMapper.toCityCallContext(it.response) } }
   }
 
 }

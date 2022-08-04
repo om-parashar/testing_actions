@@ -5,6 +5,7 @@ import `in`.porter.calldictator.providers.omsconnect.entities.CityResponseContex
 import `in`.porter.calldictator.providers.omsconnect.entities.CustomerResponseContext
 import `in`.porter.calldictator.providers.omsconnect.entities.DriverResponseContext
 import `in`.porter.calldictator.providers.omsconnect.entities.OrderResponseContext
+import arrow.core.none
 import javax.inject.Inject
 
 class OMSResponseMapper
@@ -33,14 +34,14 @@ constructor() {
 
   fun toOrderCallContext(response: OrderResponseContext) = OrderContext (
     id = response.id,
-    alternateNumber = response.alternateNumber,
-    customerId = response.customerInfo.id,
+    alternateNumber = response.alternateNumber["value"].toString(),
+    customerId = response.customerInfo.id["value"]?.toInt(),
     isBusinessOrder = response.isBusinessOrder,
     isHelperOrder = response.isHelperOrder,
-    driverId = response.driverInfo.id,
+    driverId = response.driverInfo.id["value"]?.toInt(),
     hasWaypoints = response.hasWaypoints,
     labour = response.labour,
-    orderStagVicinity = response.orderStagVicinity,
+    orderStagVicinity = response.orderStageVicinity["value"].toString(),
     labourHelper = response.labourHelper,
     outstation = response.outstation,
     requestedVehicleName = response.vehicleInfo.typeRequested,

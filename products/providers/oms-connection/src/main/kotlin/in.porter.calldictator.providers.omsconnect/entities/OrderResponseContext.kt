@@ -7,12 +7,12 @@ data class OrderResponseContext(
   val customerInfo: UserInfo,
   val vehicleInfo: OrderVehicleInfo,
   val cancellationInfo: OrderCancellationInfo,
-  val orderStagVicinity: String,
+  val orderStageVicinity: Map<String, String>,
   val hasWaypoints: Boolean,
   val labour: Boolean,
   val labourHelper: Boolean,
   val isHelperOrder: Boolean,
   val isBusinessOrder: Boolean,
   val outstation: Boolean,
-  val alternateNumber: String
+  val alternateNumber: Map<String, String>
 )
