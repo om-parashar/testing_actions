@@ -46,9 +46,9 @@ constructor() {
     outstation = response.outstation,
     requestedVehicleName = response.vehicleInfo.typeRequested,
     status = response.status,
-    cancellationReason = response.cancellationInfo.cancelReason,
-    cancellationReasonSource = response.cancellationInfo.cancelReasonSource,
-    cancellationReasonAttribution = response.cancellationInfo.attribution
+    cancellationReason = response.cancellationInfo.value?.cancelReason,
+    cancellationReasonSource = response.cancellationInfo.value?.cancelReasonSource,
+    cancellationReasonAttribution = response.cancellationInfo.value?.attribution?.get("value")
     )
 
   fun toCityCallContext(response: CityResponseContext) = CityCallContext (
