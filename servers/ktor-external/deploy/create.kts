@@ -42,8 +42,7 @@ val serviceNetwork = network {
 
   dns {
     hostedZones {
-      +HostedZoneDSL.PorterInternalDSL
-      if (env == "staging") +HostedZoneDSL.PorterExternalDSL
+      +HostedZoneDSL.PorterExternalDSL
     }
     name = "calldictator-$env-ktor-external"
   }
