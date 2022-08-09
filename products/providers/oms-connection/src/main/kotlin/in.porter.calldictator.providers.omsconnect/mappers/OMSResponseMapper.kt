@@ -18,7 +18,7 @@ constructor() {
     language = response.language,
     loginStatus = response.loginStatus,
     isSuspended = response.suspensionInfo.isSuspended,
-    suspensionReason = if (response.suspensionInfo.isSuspended) response.suspensionInfo.reason["value"].toString() else "",
+    suspensionReason = response.suspensionInfo.reason["value"].toString(),
     uuid = response.uuid,
     vehicleInfo = response.vehicleInfo.type
     )

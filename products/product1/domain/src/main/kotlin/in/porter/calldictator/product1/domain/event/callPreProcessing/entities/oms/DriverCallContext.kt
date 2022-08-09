@@ -8,5 +8,5 @@ data class DriverCallContext(
   val loginStatus: String,
   val vehicleInfo: String,
   val isSuspended: Boolean,
-  val suspensionReason: String
+  val suspensionReason: String?
 )

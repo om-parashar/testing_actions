@@ -25,7 +25,7 @@ constructor(){
     userCallContext.vehicleInfo?.let { contextAttrs.add(buildString("partner_vehicle_type", it)) }
 
     if(userCallContext.isSuspended != null && userCallContext.isSuspended) {
-      userCallContext.suspensionInfo?.let { buildString("partner_suspension_reason", it) }?.let { contextAttrs.add(it) }
+      userCallContext.suspensionReason?.let { buildString("partner_suspension_reason", it) }?.let { contextAttrs.add(it) }
     }
 
     if(userCallContext.order != null) {

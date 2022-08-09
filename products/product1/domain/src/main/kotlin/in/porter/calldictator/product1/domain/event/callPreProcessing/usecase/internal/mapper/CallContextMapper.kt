@@ -18,7 +18,7 @@ constructor(){
     loginStatus = driverCallContext.loginStatus,
     vehicleInfo = driverCallContext.vehicleInfo,
     isSuspended = driverCallContext.isSuspended,
-    suspensionInfo = driverCallContext.suspensionReason,
+    suspensionReason = driverCallContext.suspensionReason,
     order = orderContext
     )
 
@@ -33,7 +33,7 @@ constructor(){
     loginStatus = null,
     vehicleInfo = null,
     isSuspended = null,
-    suspensionInfo = null,
+    suspensionReason = null,
     order = orderContext
   )
 
@@ -48,7 +48,7 @@ constructor(){
     loginStatus = null,
     vehicleInfo = null,
     isSuspended = null,
-    suspensionInfo = null,
+    suspensionReason = null,
     order = null
     )
 }

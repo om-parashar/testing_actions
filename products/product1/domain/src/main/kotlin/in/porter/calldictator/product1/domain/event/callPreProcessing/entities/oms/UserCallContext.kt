@@ -12,6 +12,6 @@ data class UserCallContext (
   val loginStatus: String?,
   val vehicleInfo: String?,
   val isSuspended: Boolean?,
-  val suspensionInfo: String?,
+  val suspensionReason: String?,
   val order: OrderContext?
 )
