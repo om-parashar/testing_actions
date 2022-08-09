@@ -44,7 +44,7 @@ val serviceNetwork = network {
     hostedZones {
       +HostedZoneDSL.PorterExternalDSL
     }
-    name = "calldictator-$env-ktor-external"
+    name = "echo-$env-ktor-external"
   }
 }
 

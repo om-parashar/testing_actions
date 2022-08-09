@@ -1,4 +1,4 @@
-val appName = "calldictator-$env-ktor-external"
+val appName = "echo-$env-ktor-external"
 
 val serverContainer = container {
   val appServerName = "$appName-server"
@@ -31,7 +31,7 @@ val serverContainer = container {
 
 val serverTask = ec2Task {
   name = appName
-  taskRole = "calldictator-$env"
+  taskRole = "echo-$env"
 
   containers {
     +serverContainer

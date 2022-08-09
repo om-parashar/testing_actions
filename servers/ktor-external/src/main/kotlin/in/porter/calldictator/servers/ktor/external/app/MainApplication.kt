@@ -8,6 +8,7 @@ import `in`.porter.kotlinutils.webserver.ktor.features.timeout.TimeoutFeature
 import `in`.porter.kotlinutils.webserver.ktor.features.tracingids.requestId
 import `in`.porter.kotlinutils.webserver.ktor.features.tracingids.traceId
 import `in`.porter.calldictator.servers.ktor.external.di.HttpComponentFactory
+import `in`.porter.calldictator.servers.ktor.external.callDictator.callDictatorRoutes
 import com.fasterxml.jackson.core.JsonProcessingException
 import com.fasterxml.jackson.databind.DeserializationFeature
 import com.fasterxml.jackson.databind.MapperFeature
@@ -84,5 +85,6 @@ fun Application.main() {
 
   routing {
     get("/") { call.respond(HttpStatusCode.OK, Unit) }
+    route("/api/v1/call") { callDictatorRoutes(httpComponent) }
   }
 }

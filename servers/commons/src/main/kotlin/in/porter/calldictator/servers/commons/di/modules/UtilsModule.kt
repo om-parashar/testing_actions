@@ -1,17 +1,17 @@
 package `in`.porter.calldictator.servers.commons.di.modules
 
 import `in`.porter.kotlinutils.commons.config.Environment
-import `in`.porter.kotlinutils.serde.jackson.custom.EitherSerde
-import `in`.porter.kotlinutils.serde.jackson.custom.InstantSerde
-import `in`.porter.kotlinutils.serde.jackson.custom.MoneySerde
-import `in`.porter.kotlinutils.serde.jackson.custom.UrlSerde
 import `in`.porter.calldictator.servers.commons.extensions.loadResource
+import `in`.porter.kotlinutils.serde.commons.SerdeMapper
+import `in`.porter.kotlinutils.serde.jackson.custom.*
+import `in`.porter.kotlinutils.serde.jackson.json.JacksonSerdeMapperFactory
 import com.fasterxml.jackson.databind.PropertyNamingStrategy
 import com.fasterxml.jackson.module.kotlin.KotlinModule
 import dagger.Module
 import dagger.Provides
 import io.ktor.client.*
 import io.ktor.client.engine.cio.*
+import io.ktor.client.features.*
 import io.ktor.client.features.json.*
 import io.ktor.util.*
 import org.apache.logging.log4j.kotlin.Logging
@@ -26,6 +26,7 @@ class UtilsModule {
   @KtorExperimentalAPI
   @Provides
   fun provideHttpClient() = HttpClient(CIO) {
+    install(HttpTimeout)
     install(JsonFeature) {
       serializer = JacksonSerializer {
         propertyNamingStrategy = PropertyNamingStrategy.SNAKE_CASE
@@ -37,6 +38,25 @@ class UtilsModule {
       }
     }
   }
+
+  @Provides
+  @Singleton
+  fun provideSerdeMapper() : SerdeMapper =
+    getSerdeMapper()
+
+  private fun getSerdeMapper() =
+    JacksonSerdeMapperFactory().build().apply {
+      this.configure {
+        propertyNamingStrategy = PropertyNamingStrategy.SNAKE_CASE
+        registerModules(
+          KotlinModule(),
+          InstantSerde.millisModule,
+          MoneySerde.moneyModule,
+          LocalDateSerde.localDateModule,
+          LocalTimeSerde.localTimeSerde,
+          DurationSerde.millisModule)
+      }
+    }
 
   @Provides
   @Singleton

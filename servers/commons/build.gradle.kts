@@ -7,6 +7,8 @@ plugins {
 dependencies {
   implementation(project(Modules.CALLDICTATOR.domain))
   implementation(project(Modules.CALLDICTATOR.Data.psql))
+  implementation(project(Modules.Providers.rheoConnect))
+  implementation(project(Modules.Providers.omsConnect))
 
   implementation(Libs.Log4j.core)
   implementation(Libs.Log4j.slf4jImpl)

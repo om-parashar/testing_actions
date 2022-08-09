@@ -27,4 +27,13 @@ project(":sqs-server").projectDir = File("servers/sqs")
 include(":client")
 project(":client").projectDir = File("servers/client")
 
+include(":oms-connection")
+project(":oms-connection").projectDir = File("products/providers/oms-connection")
+
+include(":rheo-connection")
+project(":rheo-connection").projectDir = File("products/providers/rheo-connection")
+
+include(":utils")
+project(":utils").projectDir = File("products/providers/utils")
+
 //includeBuild("../kotlin-utils")
