@@ -11,7 +11,7 @@ val env = args[0]
 
 val taskDesiredCount =
   when (env) {
-    "prod" -> 2
+    "prod" -> 0
     else -> 1
   }
 
