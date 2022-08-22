@@ -17,6 +17,17 @@ object Modules {
     }
   }
 
+  object support {
+    const val domain = ":support-domain"
+
+    object Api {
+      private const val api = ":support-api"
+
+      const val models = "$api-models"
+      const val service = "$api-service"
+    }
+  }
+
   object Providers {
     const val rheoConnect = ":rheo-connection"
     const val omsConnect = ":oms-connection"

@@ -9,6 +9,8 @@ rscripts/rscript_connections.r
 .idea/modules
 .idea/modules.xml
 .idea/compiler.xml
+.idea/aws.xml
+.idea/kotlinScripting.xml
 # endregion custom
 
 
