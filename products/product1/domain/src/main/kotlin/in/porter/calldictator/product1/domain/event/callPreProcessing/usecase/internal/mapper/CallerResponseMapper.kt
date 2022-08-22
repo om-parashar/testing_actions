@@ -1,4 +1,4 @@
-package `in`.porter.calldictator.product1.domain.event.callPreProcessing.usecase.internal
+package `in`.porter.calldictator.product1.domain.event.callPreProcessing.usecase.internal.mapper
 
 import `in`.porter.calldictator.product1.domain.event.callPreProcessing.entities.oms.CallerContext
 import `in`.porter.calldictator.product1.domain.event.callPreProcessing.entities.oms.UserCallContext

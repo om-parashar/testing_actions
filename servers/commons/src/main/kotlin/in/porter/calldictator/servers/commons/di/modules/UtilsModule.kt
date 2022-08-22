@@ -5,6 +5,8 @@ import `in`.porter.calldictator.servers.commons.extensions.loadResource
 import `in`.porter.kotlinutils.serde.commons.SerdeMapper
 import `in`.porter.kotlinutils.serde.jackson.custom.*
 import `in`.porter.kotlinutils.serde.jackson.json.JacksonSerdeMapperFactory
+import com.fasterxml.jackson.databind.DeserializationFeature
+import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.PropertyNamingStrategy
 import com.fasterxml.jackson.module.kotlin.KotlinModule
 import dagger.Module
@@ -57,6 +59,22 @@ class UtilsModule {
           DurationSerde.millisModule)
       }
     }
+
+
+  @Provides
+  @Singleton
+  fun provideObjectMapper() = ObjectMapper()
+    .apply {
+      propertyNamingStrategy = PropertyNamingStrategy.SNAKE_CASE
+      configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
+
+      registerModule(KotlinModule())
+      registerModule(DurationSerde.millisModule)
+      registerModule(InstantSerde.millisModule)
+      registerModule(ZonedDateTimeMillisSerde.epochMillisModule)
+      registerModules(UrlSerde.urlModule)
+    }
+
 
   @Provides
   @Singleton
