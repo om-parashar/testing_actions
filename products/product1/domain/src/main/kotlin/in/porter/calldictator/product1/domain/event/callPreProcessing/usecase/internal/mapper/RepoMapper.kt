@@ -1,5 +1,6 @@
 package `in`.porter.calldictator.product1.domain.event.callPreProcessing.usecase.internal.mapper
 
+import `in`.porter.calldictator.product1.domain.event.callPreProcessing.entities.oms.CallerContext
 import `in`.porter.calldictator.product1.domain.event.callPreProcessing.entities.repo.create.CallDraft
 import `in`.porter.calldictator.product1.domain.event.callPreProcessing.entities.repo.create.CallHandlingDraft
 import `in`.porter.calldictator.product1.domain.event.callPreProcessing.entities.repo.create.CallerContextDraft
@@ -13,11 +14,11 @@ constructor(
   private val objectMapper: ObjectMapper
 ){
 
-  fun toCallDraft(callerResponse: CallerResponse): CallDraft =
+  fun toCallDraft(request: CallerContext): CallDraft =
     CallDraft(
-      phone = callerResponse.callContext.mobile,
-      did = callerResponse.callContext.did,
-      customerCRTId = callerResponse.customerCRTId
+      phone = request.phone,
+      did = request.did,
+      customerCRTId = request.customerCRTId
     )
 
   fun toCallContextDraft(callerResponse: CallerResponse, callId: Int): CallerContextDraft =

@@ -3,7 +3,7 @@ package `in`.porter.calldictator.data.conversation.tables.call
 import `in`.porter.kotlinutils.exposed.columns.datetime.timestampWithoutTZAsInstant
 import org.jetbrains.exposed.dao.id.IntIdTable
 
-object CallsTable : IntIdTable("conversation_calls") {
+object CallsTable : IntIdTable("conversation_call") {
 
   val phone = varchar("phone", 256)
   val did = varchar("did", 256)

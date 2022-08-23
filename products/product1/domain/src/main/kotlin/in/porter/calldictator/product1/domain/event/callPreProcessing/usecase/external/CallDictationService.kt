@@ -19,10 +19,18 @@ constructor(
 
   suspend fun invoke(request: CallerContext): CallerResponse {
 
+    // Persisting the call request data.
+    val call = dataPersistence.persistCallData(request)
+
+    // Processing the call request
     val callContext = processCallContext.invoke(request)
     val featureContext = processFeatureContext.invoke(callContext)
+
+    // Generating the response
     val callerResponse = callerResponseMapper.generate(request, callContext, featureContext)
-    //dataPersistence.invoke(callerResponse)
+
+    //persisting call response
+    dataPersistence.persistCallProcessedData(callerResponse, call)
     return callerResponse
   }
 }
