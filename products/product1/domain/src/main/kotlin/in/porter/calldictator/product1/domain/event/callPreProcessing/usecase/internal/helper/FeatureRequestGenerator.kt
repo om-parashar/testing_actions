@@ -19,7 +19,7 @@ constructor(){
     contextAttrs.add(buildString("city", userCallContext.city))
     contextAttrs.add(buildString("caller_identifier", userCallContext.uuid.toString()))
 
-    contextAttrs.add(buildString("order_stage_vicinity", if(userCallContext.order == null) "nor" else userCallContext.order.orderStagVicinity ?: "unknown"))
+    contextAttrs.add(buildString("order_stage_vicinity", if(userCallContext.order == null) "nor" else userCallContext.order.orderStagVicinity))
     contextAttrs.add(buildBoolean("is_union_city", GeoRegionConstants.UNION_CITY.contains(userCallContext.city)))
 
     userCallContext.vehicleInfo?.let { contextAttrs.add(buildString("partner_vehicle_type", it)) }

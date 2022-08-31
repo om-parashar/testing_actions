@@ -7,6 +7,7 @@ import `in`.porter.calldictator.servers.commons.di.modules.PsqlModule
 import `in`.porter.calldictator.servers.commons.di.modules.SQSClientModule
 import `in`.porter.calldictator.servers.commons.di.modules.UtilsModule
 import `in`.porter.kotlinutils.serde.commons.SerdeMapper
+import com.fasterxml.jackson.databind.ObjectMapper
 import com.zaxxer.hikari.HikariDataSource
 import dagger.Component
 import io.ktor.client.*
@@ -31,4 +32,5 @@ interface RootComponent {
   val httpClient: HttpClient
   val environment: Environment
   val serdeMapper: SerdeMapper
+  val objectMapper: ObjectMapper
 }
