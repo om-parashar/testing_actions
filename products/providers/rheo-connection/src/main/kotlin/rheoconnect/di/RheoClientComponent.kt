@@ -6,6 +6,7 @@ import `in`.porter.kotlinutils.serde.commons.SerdeMapper
 import dagger.BindsInstance
 import dagger.Component
 import io.ktor.client.*
+import rheoconnect.entities.RheoConfig
 import javax.inject.Named
 
 @Component(
@@ -26,5 +27,8 @@ interface RheoClientComponent {
 
     @BindsInstance
     fun mapper(mapper: SerdeMapper): Builder
+
+    @BindsInstance
+    fun rheoConfig(rheoConfig: RheoConfig): Builder
   }
 }

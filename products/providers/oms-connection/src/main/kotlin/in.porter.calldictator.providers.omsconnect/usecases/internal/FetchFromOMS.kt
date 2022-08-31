@@ -13,19 +13,20 @@ import javax.inject.Inject
 class FetchFromOMS
 @Inject
 constructor(
+  private val omsConfig: OMSConfig,
   private val mapper: SerdeMapper,
   private val httpClient: HttpClient
 ) {
 
   suspend fun processDriverRequest(phone: String): DriverResponse? {
-    val url = fetchURL(OMSConnectionConstants.FETCH_DRIVER_API, mapOf("phone" to phone))
+    val url = fetchURL(omsConfig.fetch_driver_api, mapOf("phone" to phone))
     val response = performGetRequest(url = url)
     return processDriverResponse(response)
   }
 
 
   suspend fun processCustomerRequest(phone: String): CustomerResponse? {
-    val url = fetchURL(OMSConnectionConstants.FETCH_CUSTOMER_API, mapOf("phone" to phone))
+    val url = fetchURL(omsConfig.fetch_customer_api, mapOf("phone" to phone))
     val response = performGetRequest(url = url)
     return processCustomerResponse(response)
 
@@ -38,7 +39,7 @@ constructor(
 
 
   suspend fun processOrderRequest(caller_id: Int, caller_type: String): OrderResponse? {
-    val url = fetchURL(OMSConnectionConstants.FETCH_ORDER_API, mapOf("caller_id" to caller_id, "caller_type" to caller_type))
+    val url = fetchURL(omsConfig.fetch_order_api, mapOf("caller_id" to caller_id, "caller_type" to caller_type))
     val response = performGetRequest(url = url)
     return processOrderResponse(response)
 
@@ -51,7 +52,7 @@ constructor(
 
 
   suspend fun processCityRequest(did: String): CityResponse? {
-    val url = fetchURL(OMSConnectionConstants.FETCH_CITY_API, mapOf("did" to did))
+    val url = fetchURL(omsConfig.fetch_city_api, mapOf("did" to did))
     val response = performGetRequest(url = url)
     return processCityResponse(response)
 
@@ -65,7 +66,7 @@ constructor(
 
 
   private fun fetchURL(urlString: String, requestParams: Map<String, Any>): String {
-    var url = "${OMSConnectionConstants.OMS_HOST_INDIA}$urlString"
+    val url = "${omsConfig.host}$urlString"
 
     if(!requestParams.isEmpty()) {
       val urlParams = requestParams.map {(k, v) -> "${(k)}=${v}"}.joinToString("&")

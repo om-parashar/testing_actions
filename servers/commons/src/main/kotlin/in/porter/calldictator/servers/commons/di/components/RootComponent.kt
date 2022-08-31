@@ -9,9 +9,11 @@ import `in`.porter.calldictator.servers.commons.di.modules.UtilsModule
 import `in`.porter.kotlinutils.serde.commons.SerdeMapper
 import com.zaxxer.hikari.HikariDataSource
 import dagger.Component
+import `in`.porter.calldictator.providers.omsconnect.entities.OMSConfig
 import io.ktor.client.*
 import io.micrometer.core.instrument.MeterRegistry
 import org.jetbrains.exposed.sql.Database
+import rheoconnect.entities.RheoConfig
 import javax.inject.Singleton
 
 @Singleton
@@ -30,5 +32,7 @@ interface RootComponent {
   val sqsClient: SQSClient
   val httpClient: HttpClient
   val environment: Environment
+  val rheoConfig: RheoConfig
+  val omsConfig: OMSConfig
   val serdeMapper: SerdeMapper
 }
