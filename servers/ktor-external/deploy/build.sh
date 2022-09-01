@@ -23,7 +23,7 @@ aws s3 cp s3://porter-configs/${ENV}/echo/psql.properties ${MODULE_PATH}/src/mai
 SHADOW_JAR_FILE="ktor-external-all.jar"
 JAR_FILE="ktor-server.jar"
 
-./gradlew --console=plain -Penv=${ENV} clean ktor-external:shadowJar
+./gradlew --console=plain -Penv=${ENV} clean ktor-external:shadowJar flywayMigrate
 cp ${MODULE_PATH}/build/libs/${SHADOW_JAR_FILE} ${MODULE_PATH}/deploy/server/${JAR_FILE}
 
 
