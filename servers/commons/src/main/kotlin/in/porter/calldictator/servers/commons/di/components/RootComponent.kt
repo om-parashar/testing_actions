@@ -7,6 +7,7 @@ import `in`.porter.calldictator.servers.commons.di.modules.PsqlModule
 import `in`.porter.calldictator.servers.commons.di.modules.SQSClientModule
 import `in`.porter.calldictator.servers.commons.di.modules.UtilsModule
 import `in`.porter.kotlinutils.serde.commons.SerdeMapper
+import com.fasterxml.jackson.databind.ObjectMapper
 import com.zaxxer.hikari.HikariDataSource
 import dagger.Component
 import `in`.porter.calldictator.providers.omsconnect.entities.OMSConfig
@@ -35,4 +36,5 @@ interface RootComponent {
   val rheoConfig: RheoConfig
   val omsConfig: OMSConfig
   val serdeMapper: SerdeMapper
+  val objectMapper: ObjectMapper
 }

@@ -1,5 +1,7 @@
 package `in`.porter.calldictator.servers.commons.di.modules
 
+import com.fasterxml.jackson.databind.DeserializationFeature
+import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.PropertyNamingStrategy
 import com.fasterxml.jackson.module.kotlin.KotlinModule
 import dagger.Module
@@ -69,7 +71,7 @@ class UtilsModule {
 
   @Provides
   @Singleton
-  fun provideRheoHost(): RheoConfig {
+  fun provideRheoConfig(): RheoConfig {
     val properties = Properties().loadResource(this::javaClass, "application.properties")
     return RheoConfig(
       properties.getProperty("rheo.host"),
@@ -79,7 +81,7 @@ class UtilsModule {
 
   @Provides
   @Singleton
-  fun provideOMSHost(): OMSConfig {
+  fun provideOMSConfig(): OMSConfig {
     val properties = Properties().loadResource(this::javaClass, "application.properties")
     return OMSConfig(
       properties.getProperty("oms.host"),
@@ -89,4 +91,20 @@ class UtilsModule {
       properties.getProperty("oms.fetch_city_api")
     )
   }
+
+  @Provides
+  @Singleton
+  fun provideObjectMapper() = ObjectMapper()
+    .apply {
+      propertyNamingStrategy = PropertyNamingStrategy.SNAKE_CASE
+      configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
+
+      registerModule(KotlinModule())
+      registerModule(DurationSerde.millisModule)
+      registerModule(InstantSerde.millisModule)
+      registerModule(ZonedDateTimeMillisSerde.epochMillisModule)
+      registerModules(UrlSerde.urlModule)
+    }
+
+
 }

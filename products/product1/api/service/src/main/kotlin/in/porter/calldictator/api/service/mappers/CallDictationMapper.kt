@@ -20,7 +20,7 @@ constructor() {
 
   fun mapPreprocessingResponse(callerResponse: CallerResponse): CallDictationResponse {
 
-    if(callerResponse == null) return CallDictationResponse.ErrorResponse(responseCode = 4000, responseMsg = "error happened while parsing.")
+    // if(callerResponse == null) return CallDictationResponse.ErrorResponse(responseCode = 4000, responseMsg = "error happened while parsing.")
 
     val featureContext = callerResponse.callerResponseOutputContext
     if (featureContext != null) {

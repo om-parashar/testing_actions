@@ -17,13 +17,12 @@ cp ${ECS_DEPLOYER_S3_JAR} ${ECS_DEPLOYER_LOCAL_JAR}
 
 # Downloading config logic goes here
 aws s3 cp s3://porter-configs/${ENV}/echo/psql_secrets.properties ${MODULE_PATH}/src/main/config/${ENV}/
-aws s3 cp s3://porter-configs/${ENV}/echo/application.properties ${MODULE_PATH}/src/main/config/${ENV}/
-aws s3 cp s3://porter-configs/${ENV}/echo/psql.properties ${MODULE_PATH}/src/main/config/${ENV}/
+aws s3 cp s3://porter-configs/${ENV}/echo/flyway_secrets.conf ${SERVER_COMMONS_PATH}/src/main/config/${ENV}/
 
 SHADOW_JAR_FILE="ktor-external-all.jar"
 JAR_FILE="ktor-server.jar"
 
-./gradlew --console=plain -Penv=${ENV} clean ktor-external:shadowJar
+./gradlew --console=plain -Penv=${ENV} clean ktor-external:shadowJar flywayMigrate
 cp ${MODULE_PATH}/build/libs/${SHADOW_JAR_FILE} ${MODULE_PATH}/deploy/server/${JAR_FILE}
 
 
