@@ -10,5 +10,6 @@ object OMSClientComponentFactory {
     DaggerOMSClientComponent.builder()
       .httpClient(rootComponent.httpClient)
       .mapper(rootComponent.serdeMapper)
+      .omsConfig(rootComponent.omsConfig)
       .build()
 }

@@ -10,5 +10,6 @@ object RheoClientComponentFactory {
     DaggerRheoClientComponent.builder()
       .httpClient(rootComponent.httpClient)
       .mapper(rootComponent.serdeMapper)
+      .rheoConfig(rootComponent.rheoConfig)
       .build()
 }

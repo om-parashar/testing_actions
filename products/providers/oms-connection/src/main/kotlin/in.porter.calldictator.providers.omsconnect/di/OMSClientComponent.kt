@@ -5,6 +5,7 @@ import `in`.porter.calldictator.product1.domain.di.ProviderNames
 import `in`.porter.kotlinutils.serde.commons.SerdeMapper
 import dagger.BindsInstance
 import dagger.Component
+import `in`.porter.calldictator.providers.omsconnect.entities.OMSConfig
 import io.ktor.client.*
 import javax.inject.Named
 
@@ -24,5 +25,8 @@ interface OMSClientComponent {
 
     @BindsInstance
     fun mapper(mapper: SerdeMapper): Builder
+
+    @BindsInstance
+    fun omsConfig(omsConfig: OMSConfig): Builder
   }
 }
