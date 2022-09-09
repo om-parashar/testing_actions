@@ -2,8 +2,6 @@ package rheoconnect.usecases.internal
 
 import `in`.porter.kotlinutils.instrumentation.opentracing.logger
 import `in`.porter.kotlinutils.serde.commons.SerdeMapper
-import `in`.porter.kotlinutils.serde.jackson.json.toJsonString
-import com.fasterxml.jackson.databind.util.JSONPObject
 import io.ktor.client.*
 import io.ktor.client.features.*
 import io.ktor.client.request.*
@@ -14,17 +12,18 @@ import javax.inject.Inject
 class FetchFromRheo
 @Inject
 constructor(
+  private val rheoConfig: RheoConfig,
   private val mapper: SerdeMapper,
   private val httpClient: HttpClient
 ){
   suspend fun fetchFeature(input: RheoInput): RheoResponse {
-    val url = fetchURL(RheoConnectionConstants.FEATURE_TOGGLING, mapOf())
+    val url = fetchURL(rheoConfig.feature_toggling, mapOf())
     val response = performPostRequest(url = url, payload = input)
     return processResponse(response)
   }
 
   private fun fetchURL(urlString: String, requestParams: Map<String, Any>): String {
-    var url = "${RheoConnectionConstants.RHEO_HOST}$urlString"
+    val url = "${rheoConfig.host}$urlString"
 
     if(!requestParams.isEmpty()) {
       val urlParams = requestParams.map {(k, v) -> "${(k)}=${v}"}.joinToString("&")
