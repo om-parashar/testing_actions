@@ -35,8 +35,8 @@ constructor(){
       contextAttrs.add(buildBoolean("is_business_order", userCallContext.order.isBusinessOrder))
       contextAttrs.add(buildBoolean("is_helper_order", userCallContext.order.isHelperOrder))
 
-      userCallContext.order.cancellationReasonAttribution?.let { buildString("cancel_reason_attribution", it) }
-      userCallContext.order.cancellationReasonSource?.let { buildString("cancel_reason_source", it) }
+      userCallContext.order.cancellationReasonAttribution?.let { contextAttrs.add(buildString("cancel_reason_attribution", it)) }
+      userCallContext.order.cancellationReasonSource?.let { contextAttrs.add(buildString("cancel_reason_source", it)) }
     }
 
     return RheoRequestContext(

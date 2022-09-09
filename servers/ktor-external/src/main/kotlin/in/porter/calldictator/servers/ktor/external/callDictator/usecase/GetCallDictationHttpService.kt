@@ -6,7 +6,6 @@ import `in`.porter.kotlinutils.instrumentation.opentracing.Traceable
 import `in`.porter.kotlinutils.instrumentation.opentracing.logger
 import io.ktor.application.*
 import io.ktor.http.*
-import io.ktor.request.*
 import io.ktor.response.*
 import io.ktor.util.*
 import javax.inject.Inject
@@ -37,10 +36,14 @@ constructor(
       )
 
       val response = callDictationApiService.invoke(callDictateRequest)
-      if (response.responseCode != 2000) {
-        call.respond(HttpStatusCode.BadRequest)
+      if (response.responseCode == 4006) {
+        call.respond(HttpStatusCode.NotAcceptable)
       }
-      call.respond(HttpStatusCode.OK, response)
+      else if (response.responseCode != 2000) {
+        call.respond(HttpStatusCode.UnprocessableEntity)
+      }
+      else
+        call.respond(HttpStatusCode.OK, response)
     } catch (e: Exception) {
       logger.error("error encountered while processing the request. $e")
       call.respond(HttpStatusCode.UnprocessableEntity)
