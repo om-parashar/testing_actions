@@ -4,6 +4,7 @@ plugins {
 
 dependencies {
   implementation(project(Modules.CALLDICTATOR.domain))
+  implementation(project(Modules.support.domain))
 
   implementation(Libs.KotlinUtils.openTracing)
   implementation(Libs.KotlinUtils.serdeJackson)

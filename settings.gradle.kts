@@ -12,6 +12,15 @@ project(":api-models").projectDir = File("products/product1/api/models")
 include("api-service")
 project(":api-service").projectDir = File("products/product1/api/service")
 
+include(":support-domain")
+project(":support-domain").projectDir = File("products/support/domain")
+
+include("support-api-models")
+project(":support-api-models").projectDir = File("products/support/api/models")
+
+include("support-api-service")
+project(":support-api-service").projectDir = File("products/support/api/service")
+
 include(":server-commons")
 project(":server-commons").projectDir = File("servers/commons")
 

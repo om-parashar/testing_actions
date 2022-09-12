@@ -33,6 +33,7 @@ object Libs {
     const val clientCio = "$group:ktor-client-cio:$version"
     const val clientJson = "$group:ktor-client-json:$version"
     const val clientJackson = "$group:ktor-client-jackson:$version"
+    const val serverTest = "$group:ktor-server-test-host:$version"
 
     const val serverCore = "$group:ktor-server-core:$version"
     const val serverNetty = "$group:ktor-server-netty:$version"
@@ -55,6 +56,8 @@ object Libs {
     const val testContainersJuniper = "$testContainersGroup:junit-jupiter:$testContainersVersion"
   }
 
+  const val kotlinTest = "org.jetbrains.kotlin:kotlin-test:$kotlinVersion"
+  const val mockk = "io.mockk:mockk:1.9.3"
   const val caffeine = "com.github.ben-manes.caffeine:caffeine:2.8.0"
   const val hikariCP = "com.zaxxer:HikariCP:3.4.1"
   const val sentry = "io.sentry:sentry:1.7.27"

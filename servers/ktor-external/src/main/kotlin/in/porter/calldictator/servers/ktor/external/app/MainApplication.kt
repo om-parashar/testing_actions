@@ -1,5 +1,13 @@
 package `in`.porter.calldictator.servers.ktor.external.app
 
+import com.fasterxml.jackson.core.JsonProcessingException
+import com.fasterxml.jackson.databind.DeserializationFeature
+import com.fasterxml.jackson.databind.MapperFeature
+import com.fasterxml.jackson.databind.PropertyNamingStrategy
+import com.fasterxml.jackson.module.kotlin.KotlinModule
+import `in`.porter.calldictator.servers.ktor.external.callDictator.callDictatorRoutes
+import `in`.porter.calldictator.servers.ktor.external.di.HttpComponentFactory
+import `in`.porter.calldictator.servers.ktor.external.support.supportContactRoutes
 import `in`.porter.kotlinutils.instrumentation.sentryktorfeature.SentryKtorFeature
 import `in`.porter.kotlinutils.serde.jackson.custom.*
 import `in`.porter.kotlinutils.webserver.ktor.features.calltracing.CallTracingFeature
@@ -7,13 +15,6 @@ import `in`.porter.kotlinutils.webserver.ktor.features.doublereceive.PorterDoubl
 import `in`.porter.kotlinutils.webserver.ktor.features.timeout.TimeoutFeature
 import `in`.porter.kotlinutils.webserver.ktor.features.tracingids.requestId
 import `in`.porter.kotlinutils.webserver.ktor.features.tracingids.traceId
-import `in`.porter.calldictator.servers.ktor.external.di.HttpComponentFactory
-import `in`.porter.calldictator.servers.ktor.external.callDictator.callDictatorRoutes
-import com.fasterxml.jackson.core.JsonProcessingException
-import com.fasterxml.jackson.databind.DeserializationFeature
-import com.fasterxml.jackson.databind.MapperFeature
-import com.fasterxml.jackson.databind.PropertyNamingStrategy
-import com.fasterxml.jackson.module.kotlin.KotlinModule
 import io.ktor.application.*
 import io.ktor.features.*
 import io.ktor.http.*
@@ -86,5 +87,6 @@ fun Application.main() {
   routing {
     get("/") { call.respond(HttpStatusCode.OK, Unit) }
     route("/api/v1/call") { callDictatorRoutes(httpComponent) }
+    route("/api/v1/support") { supportContactRoutes(httpComponent) }
   }
 }

@@ -8,6 +8,7 @@ import `in`.porter.calldictator.servers.ktor.di.HttpScope
 import `in`.porter.calldictator.servers.ktor.external.callDictator.usecase.GetCallDictationHttpService
 
 import dagger.Component
+import `in`.porter.calldictator.servers.ktor.external.support.usecase.GetSupportContactHttpService
 import rheoconnect.di.RheoClientComponent
 
 @HttpScope
@@ -22,4 +23,5 @@ import rheoconnect.di.RheoClientComponent
 interface HttpComponent {
   val run: Run
   val getCallDictationHttpService: GetCallDictationHttpService
+  val getSupportContactHttpService: GetSupportContactHttpService
 }
