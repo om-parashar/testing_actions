@@ -42,4 +42,4 @@ jobs:
           arguments: koverVerify
       - name: Notify Coverage Failure
         if: steps.test_coverage_step.outcome != 'success'
-        run: sh ./scripts/notify_test_coverage_failure.sh
+        run: sh ./scripts/notify_test_coverage_failure.sh ${{secrets.SLACK_WEBHOOK_URL}}
