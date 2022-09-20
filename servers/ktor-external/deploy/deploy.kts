@@ -7,7 +7,7 @@ import `in`.porter.utilities.ecsdeployer.dsl.*
 
 val env = args[0]
 
-println("*_*_*_*__*__*_*__*_*__*_*__*_*__*_*_*__\nenv\nin \ngithub\naction -> $env")
+println("_*_*\n_*_*__\n*_*(*_)_\n*(_*_(_*_\n(_*_(_\n*_(_*_(_\n*_(_*_(_\n*_(*(_*_\n(_*_(_*\n_(_*_(_*\n_(_*_(_\n*_(_*_\n(_*_(_\n*(_*(\n__*$env")
 
 //INCLUDE components.kt
 

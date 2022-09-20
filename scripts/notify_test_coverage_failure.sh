@@ -1,1 +1,1 @@
-curl -X POST -H 'Content-type: application/json' --data '{"text":"Hello, World!. Link -> https://github.com/om-parashar/testing_actions/pull/1"}' https://hooks.slack.com/services/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
+curl -X POST --data-urlencode "payload={\"channel\": \"#testing-bash-script\", \"username\": \"webhookbot\", \"text\": \"This is posted to #testing-bash-script and comes from a bot named webhookbot.\", \"icon_emoji\": \":ghost:\"}" $1
