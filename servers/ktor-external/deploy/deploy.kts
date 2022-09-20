@@ -7,6 +7,8 @@ import `in`.porter.utilities.ecsdeployer.dsl.*
 
 val env = args[0]
 
+println("*_*_*_*__*__*_*__*_*__*_*__*_*__*_*_*__\nenv\nin \ngithub\naction -> $env")
+
 //INCLUDE components.kt
 
 val taskDesiredCount =
