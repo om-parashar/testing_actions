@@ -7,6 +7,8 @@ import `in`.porter.utilities.ecsdeployer.dsl.*
 
 val env = args[0]
 
+println("_*_*\n_*_*__\n*_*(*_)_\n*(_*_(_*_\n(_*_(_\n*_(_*_(_\n*_(_*_(_\n*_(*(_*_\n(_*_(_*\n_(_*_(_*\n_(_*_(_\n*_(_*_\n(_*_(_\n*(_*(\n__*$env")
+
 //INCLUDE components.kt
 
 val taskDesiredCount =
