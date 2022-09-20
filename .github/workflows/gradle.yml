@@ -36,10 +36,6 @@ jobs:
           aws-region: us-east-2
       - name: Test Coverage
         id: test_coverage_step
-        continue-on-error: true
         uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
         with:
           arguments: koverVerify
-      - name: Notify Coverage Failure
-        if: steps.test_coverage_step.outcome != 'success'
-        run: sh ./scripts/notify_test_coverage_failure.sh ${{secrets.SLACK_WEBHOOK_URL}}
