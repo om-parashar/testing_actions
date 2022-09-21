@@ -32,6 +32,7 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v1
         with:
           role-to-assume: ${{ secrets.AWS_ROLE }}
+          aws-region: us-east-2
       - name: Test Coverage
         uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
         with:
