@@ -30,6 +30,7 @@ jobs:
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
+          audience: sigstore
           role-to-assume: ${{ secrets.AWS_ROLE }}
           aws-region: us-west-2
       - name: Test Coverage
