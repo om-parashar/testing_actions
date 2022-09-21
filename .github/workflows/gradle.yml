@@ -28,7 +28,7 @@ jobs:
           java-version: '11'
           distribution: 'temurin'
       - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v1
+        uses: aws-actions/configure-aws-credentials@master
         with:
           audience: sigstore
           role-to-assume: ${{ secrets.AWS_ROLE }}
