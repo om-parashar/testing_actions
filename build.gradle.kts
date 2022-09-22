@@ -2,6 +2,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
   id(Plugins.kotlinJvm) version Libs.kotlinVersion apply false
+  id(Plugins.kotlinKover) version Plugins.kotlinKoverVersion
 }
 
 allprojects {
@@ -20,7 +21,6 @@ allprojects {
         create<AwsImAuthentication>("awsIm")
       }
     }
-
   }
 }
 
@@ -29,10 +29,33 @@ subprojects {
   version = "0.1.0"
 
   apply(plugin = Plugins.kotlinJvm)
+  apply(plugin = Plugins.kotlinKover)
 
   dependencies {
     "implementation"(Libs.KotlinUtils.commons)
     "testImplementation"(Libs.KotlinUtils.testing)
+  }
+
+  kover{
+    filters {
+      classes{
+        excludes += listOf(
+          "**/*_MembersInjector.class",
+          "**/Dagger*Component.class",
+          "**/Dagger*Component\$Builder.class",
+          "**/*_*Factory.class",
+        )
+      }
+    }
+    verify{
+      rule{
+        isEnabled = true
+        name = "Line Coverage of Tests must be more than 80%"
+        bound {
+          minValue = 80
+        }
+      }
+    }
   }
 
   tasks.withType<Test> {
