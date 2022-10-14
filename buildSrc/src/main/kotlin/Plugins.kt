@@ -14,5 +14,5 @@ object Plugins {
   const val fatJarPluginVersion = "5.0.0"
 
   const val kotlinKover = "org.jetbrains.kotlinx.kover"
-  const val kotlinKoverVersion = "0.6.0"
+  const val kotlinKoverVersion = "0.6.1"
 }

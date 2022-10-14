@@ -40,11 +40,11 @@ subprojects {
     filters {
       classes{
         excludes += listOf(
-          "**/*_MembersInjector.class",
-          "**/Dagger*Component.class",
-          "**/Dagger*Component\$Builder.class",
-          "**/*_*Factory.class",
+          "*.di.*",
         )
+      }
+      annotations {
+        excludes += listOf("*Generated")
       }
     }
     verify{
