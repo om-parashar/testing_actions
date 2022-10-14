@@ -40,11 +40,11 @@ subprojects {
     filters {
       classes{
         excludes += listOf(
-          "*.di.*",
+          "*.di.*"
         )
       }
       annotations {
-        excludes += listOf("*Generated")
+        excludes += listOf("*Generated", "*IgnoreInUnitTestCoverage")
       }
     }
     verify{

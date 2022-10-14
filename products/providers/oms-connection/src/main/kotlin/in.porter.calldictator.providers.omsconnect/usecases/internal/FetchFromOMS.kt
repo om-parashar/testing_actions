@@ -1,6 +1,7 @@
 package `in`.porter.calldictator.providers.omsconnect.usecases.internal
 
 import `in`.porter.calldictator.providers.omsconnect.entities.*
+import `in`.porter.calldictator.providers.utils.annotations.IgnoreInUnitTestCoverage
 import `in`.porter.kotlinutils.instrumentation.opentracing.logger
 import `in`.porter.kotlinutils.serde.commons.SerdeMapper
 import io.ktor.client.*
@@ -75,6 +76,7 @@ constructor(
     return url
   }
 
+  @IgnoreInUnitTestCoverage
   private suspend fun performGetRequest(
     url: String
   ): String {

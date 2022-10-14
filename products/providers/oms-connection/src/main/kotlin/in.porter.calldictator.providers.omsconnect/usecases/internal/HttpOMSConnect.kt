@@ -1,11 +1,13 @@
 package `in`.porter.calldictator.providers.omsconnect.usecases.internal
 
+import `in`.porter.calldictator.providers.utils.annotations.IgnoreInUnitTestCoverage
 import io.ktor.client.*
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
 import org.apache.logging.log4j.kotlin.Logging
 import javax.inject.Inject
 
+@IgnoreInUnitTestCoverage
 class HttpOMSConnect
 @Inject
 constructor(

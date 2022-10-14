@@ -18,7 +18,7 @@ constructor() {
     language = response.language,
     loginStatus = response.loginStatus,
     isSuspended = response.suspensionInfo.isSuspended,
-    suspensionReason = response.suspensionInfo.reason["value"].toString(),
+    suspensionReason = response.suspensionInfo.reason["value"],
     uuid = response.uuid,
     vehicleInfo = response.vehicleInfo.type
     )
@@ -29,12 +29,12 @@ constructor() {
     uuid = response.uuid,
     city = response.city.name,
     language = response.language,
-    subCategory = if (response.subCategory.isNotEmpty()) response.subCategory["value"].toString() else ""
+    subCategory = response.subCategory["value"] ?: ""
     )
 
   fun toOrderCallContext(response: OrderResponseContext) = OrderContext (
     id = response.id,
-    alternateNumber = response.alternateNumber["value"].toString(),
+    alternateNumber = response.alternateNumber["value"],
     customerId = response.customerInfo.id["value"]?.toInt(),
     isBusinessOrder = response.isBusinessOrder,
     isHelperOrder = response.isHelperOrder,

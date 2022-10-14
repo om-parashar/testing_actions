@@ -6,9 +6,11 @@ import `in`.porter.kotlinutils.serde.commons.SerdeMapper
 import dagger.BindsInstance
 import dagger.Component
 import `in`.porter.calldictator.providers.omsconnect.entities.OMSConfig
+import `in`.porter.calldictator.providers.utils.annotations.IgnoreInUnitTestCoverage
 import io.ktor.client.*
 import javax.inject.Named
 
+@IgnoreInUnitTestCoverage
 @Component(modules = [OmsClientModule::class])
 interface OMSClientComponent {
 
