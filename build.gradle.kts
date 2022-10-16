@@ -39,9 +39,7 @@ subprojects {
   kover{
     filters {
       classes{
-        excludes += listOf(
-          "*.di.*"
-        )
+        excludes += listOf("*di.*", "*Factory*")
       }
       annotations {
         excludes += listOf("*Generated", "*IgnoreInUnitTestCoverage")

@@ -1,5 +1,6 @@
 package rheoconnect.usecases.internal
 
+import `in`.porter.calldictator.providers.utils.annotations.IgnoreInUnitTestCoverage
 import `in`.porter.kotlinutils.instrumentation.opentracing.logger
 import `in`.porter.kotlinutils.serde.commons.SerdeMapper
 import io.ktor.client.*
@@ -32,6 +33,7 @@ constructor(
     return url
   }
 
+  @IgnoreInUnitTestCoverage
   private suspend fun performPostRequest(
     url: String,
     payload: Any
@@ -49,6 +51,7 @@ constructor(
     return responseStr
   }
 
+  @IgnoreInUnitTestCoverage
   private suspend fun logResponse(response: HttpResponse): String {
     val responseStr = response.readText()
     logger.info("response status: ${response.status}")
