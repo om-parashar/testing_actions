@@ -27,7 +27,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: "testing name"
-        run: echo "::workflow-command parameter1={data},parameter2={data}::{command value}"
+        run: core.error("Hello world")
 
 #       - name: Testing PR Checks information
       
