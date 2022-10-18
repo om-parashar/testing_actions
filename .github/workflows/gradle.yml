@@ -27,7 +27,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: "testing name"
-        run: core.error("Hello world")
+        run: echo "::error file=app.js,line=1::Missing semicolon"
 
 #       - name: Testing PR Checks information
       
